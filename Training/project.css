@@ -1,0 +1,87 @@
+
+.image {
+    background-image:url(image.jpg);
+    background-size: cover;
+    height:350px;
+    position:relative;
+}
+.nav_bar {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:black;
+    margin-left:65px;
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    height: 45px;
+    margin-bottom: 70px;
+}
+.name {
+    margin-right:500px;
+    font-size:45px;
+    margin-top:120px;
+}
+.name:hover {
+    border-bottom: 1.5px solid black;
+}
+.border h4 {
+    border-bottom: 1.5px solid transparent;
+}
+.border h4:hover {
+    border-bottom: 1.5px solid black;
+}
+.body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+a {
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
+    margin-top: 65px;
+}
+.title{
+    font-size: 60px;
+}
+.title1{
+    font-size: 30px;
+}
+.quiz{
+    font-size:35px ;
+}
+.quiz1{
+    font-size: 40px;
+}
+.a{
+    font-size: 26px;
+}
+.resume{
+    font-size:40px ;
+}
+.resume1{
+    font-size: 35px;
+}
+.login{
+    font-size:40px ;
+}
+.login1{
+    font-size: 35px;
+}
+.projects a{
+    text-decoration: none;
+    
+}
+footer{
+        margin: bottom 0%;
+    }
+    .copyright{
+        text-align: center;
+        align-items: center;
+        font-size: 30px;
+    }
+    .foot{
+        color: black;
+        margin-top: 50px;
+    }

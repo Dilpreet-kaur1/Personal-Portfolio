@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Library Management System</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      box-shadow: 0 4px 8px rgba(74,144,226,0.4);
+      position: relative;
+    }
+    #aboutBtn {
+      position: absolute;
+      top: 18px;
+      right: 30px;
+      background: white;
+      color: #4a90e2;
+      border: none;
+      padding: 8px 15px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    #aboutBtn:hover {
+      background-color: #357ABD;
+      color: white;
+    }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      color: #4a90e2;
+      margin-bottom: 15px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: white;
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #4a90e2;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    tr:hover {
+      background-color: #f1f7ff;
+    }
+    form {
+      background: white;
+      padding: 20px 25px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      margin-bottom: 40px;
+    }
+    form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #555;
+    }
+    form input[type="text"],
+    form input[type="number"],
+    form select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 15px;
+      border: 1.5px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    form input[type="text"]:focus,
+    form input[type="number"]:focus,
+    form select:focus {
+      border-color: #4a90e2;
+      outline: none;
+    }
+    form button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #357ABD;
+    }
+    #returnBookSection {
+      margin-bottom: 40px;
+    }
+    /* Modal styles */
+    #aboutModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    #aboutModalContent {
+      background-color: white;
+      margin: 10% auto;
+      padding: 20px 30px;
+      border-radius: 8px;
+      max-width: 500px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.25);
+      position: relative;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    #aboutModalContent h3 {
+      margin-top: 0;
+      color: #4a90e2;
+    }
+    #closeModalBtn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: #4a90e2;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      line-height: 28px;
+      text-align: center;
+    }
+    #closeModalBtn:hover {
+      background-color: #357ABD;
+    }
+    @media (max-width: 600px) {
+      th, td {
+        padding: 10px 8px;
+      }
+      header {
+        font-size: 1.5rem;
+        padding: 15px 20px;
+      }
+      #aboutModalContent {
+        margin: 20% 10px;
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  Library Management System
+  <button id="aboutBtn" aria-label="About the library">About</button>
+</header>
+
+<main>
+  <section>
+    <h2>Available Books</h2>
+    <table id="booksTable">
+      <thead>
+        <tr>
+          <th>Book Title</th>
+          <th>Author</th>
+          <th>Year</th>
+          <th>Copies</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>The Great Gatsby</td>
+          <td>F. Scott Fitzgerald</td>
+          <td>1925</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>The Haunted House</td>
+          <td>George Orwell</td>
+          <td>1949</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>To Kill a Mockingbird</td>
+          <td>Harper Lee</td>
+          <td>1960</td>
+          <td>4</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Add New Book</h2>
+    <form id="addBookForm">
+      <label for="title">Book Title</label>
+      <input type="text" id="title" name="title" placeholder="Enter book title" required />
+
+      <label for="author">Author</label>
+      <input type="text" id="author" name="author" placeholder="Enter author's name" required />
+
+      <label for="year">Year Published</label>
+      <input type="number" id="year" name="year" placeholder="e.g., 2020" min="0" max="2100" required />
+
+      <label for="copies">Number of Copies</label>
+      <input type="number" id="copies" name="copies" placeholder="e.g., 5" min="1" required />
+
+      <button type="submit">Add Book</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Borrow a Book</h2>
+    <form id="borrowForm">
+      <label for="userName">Your Name</label>
+      <input type="text" id="userName" name="userName" placeholder="Enter your name" required />
+
+      <label for="bookSelect">Select Book</label>
+      <select id="bookSelect" name="bookSelect" required>
+        <option value="" disabled selected>-- Choose a Book --</option>
+      </select>
+
+      <button type="submit">Borrow Book</button>
+    </form>
+  </section>
+
+  <section id="returnBookSection">
+    <h2>Return a Book</h2>
+    <form id="returnForm">
+      <label for="borrowedBookSelect">Select Borrowed Book</label>
+      <select id="borrowedBookSelect" name="borrowedBookSelect" required>
+        <option value="" disabled selected>-- Choose Borrowed Book --</option>
+      </select>
+      <button type="submit">Return Book</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Borrowed Books</h2>
+    <table id="borrowedTable">
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>Book Title</th>
+          <th>Borrowed At</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Returned Books</h2>
+    <table id="returnedTable">
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>Book Title</th>
+          <th>Returned At</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<!-- About Modal -->
+<div id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" tabindex="-1">
+  <div id="aboutModalContent">
+    <button id="closeModalBtn" aria-label="Close about modal">&times;</button>
+    <h3 id="aboutTitle">About Our Library</h3>
+    <p>Welcome to our Library Management System! Our library is dedicated to providing access to a wide collection of books for all readers. Borrow, return, and explore books easily through this system.</p>
+    <p>We aim to foster knowledge and literacy in our community. Happy reading!</p>
+  </div>
+</div>
+
+<script>
+  const addBookForm = document.getElementById('addBookForm');
+  const booksTableBody = document.querySelector('#booksTable tbody');
+  const borrowForm = document.getElementById('borrowForm');
+  const bookSelect = document.getElementById('bookSelect');
+  const borrowedTableBody = document.querySelector('#borrowedTable tbody');
+  const returnForm = document.getElementById('returnForm');
+  const borrowedBookSelect = document.getElementById('borrowedBookSelect');
+  const returnedTableBody = document.querySelector('#returnedTable tbody');
+
+  const aboutBtn = document.getElementById('aboutBtn');
+  const aboutModal = document.getElementById('aboutModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+
+  function updateBookOptions() {
+    bookSelect.innerHTML = '<option value="" disabled selected>-- Choose a Book --</option>';
+    Array.from(booksTableBody.rows).forEach(row => {
+      const title = row.cells[0].textContent;
+      const copies = parseInt(row.cells[3].textContent);
+      if (copies > 0) {
+        const option = document.createElement('option');
+        option.value = title;
+        option.textContent = title;
+        bookSelect.appendChild(option);
+      }
+    });
+  }
+
+  function updateBorrowedBookOptions() {
+    borrowedBookSelect.innerHTML = '<option value="" disabled selected>-- Choose Borrowed Book --</option>';
+    Array.from(borrowedTableBody.rows).forEach(row => {
+      const userName = row.cells[0].textContent;
+      const bookTitle = row.cells[1].textContent;
+      const option = document.createElement('option');
+      option.value = $ {userName} | $ {bookTitle};
+      option.textContent = $ {userName} - $ {bookTitle};
+      borrowedBookSelect.appendChild(option);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateBookOptions();
+    updateBorrowedBookOptions();
+  });
+
+  addBookForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const title = addBookForm.title.value.trim();
+    const author = addBookForm.author.value.trim();
+    const year = addBookForm.year.value;
+    const copies = addBookForm.copies.value;
+
+    if(title && author && year && copies){
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${title}</td>
+        <td>${author}</td>
+        <td>${year}</td>
+        <td>${copies}</td>
+      `;
+      booksTableBody.appendChild(tr);
+      addBookForm.reset();
+      updateBookOptions();
+    }
+  });
+
+  borrowForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const userName = borrowForm.userName.value.trim();
+    const bookTitle = borrowForm.bookSelect.value;
+
+    if(userName && bookTitle){
+      let bookRow = null;
+      for(let row of booksTableBody.rows){
+        if(row.cells[0].textContent === bookTitle){
+          bookRow = row;
+          break;
+        }
+      }
+
+      if(bookRow){
+        let availableCopies = parseInt(bookRow.cells[3].textContent);
+        if(availableCopies > 0){
+          bookRow.cells[3].textContent = availableCopies - 1;
+
+          const borrowedRow = document.createElement('tr');
+          const now = new Date();
+          const formattedDate = now.toLocaleString();
+          borrowedRow.innerHTML = `
+            <td>${userName}</td>
+            <td>${bookTitle}</td>
+            <td>${formattedDate}</td>
+          `;
+          borrowedTableBody.appendChild(borrowedRow);
+
+          borrowForm.reset();
+          updateBookOptions();
+          updateBorrowedBookOptions();
+        } else {
+          alert('Sorry, no copies available for this book.');
+        }
+      }
+    }
+  });
+
+  returnForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const selectedValue = borrowedBookSelect.value;
+    if (!selectedValue) {
+      alert('Please select a borrowed book to return.');
+      return;
+    }
+
+    const [userName, bookTitle] = selectedValue.split('|');
+
+    for(let row of booksTableBody.rows){
+      if(row.cells[0].textContent === bookTitle){
+        row.cells[3].textContent = parseInt(row.cells[3].textContent) + 1;
+        break;
+      }
+    }
+
+    const returnedRow = document.createElement('tr');
+    const now = new Date();
+    const formattedDate = now.toLocaleString();
+    returnedRow.innerHTML = `
+      <td>${userName}</td>
+      <td>${bookTitle}</td>
+      <td>${formattedDate}</td>
+    `;
+    returnedTableBody.appendChild(returnedRow);
+
+    updateBookOptions();
+    updateBorrowedBookOptions();
+    returnForm.reset();
+  });
+
+  // Modal open and close handlers
+  aboutBtn.addEventListener('click', () => {
+    aboutModal.style.display = 'block';
+    aboutModal.focus();
+  });
+
+  closeModalBtn.addEventListener('click', () => {
+    aboutModal.style.display = 'none';
+  });
+
+  // Close modal if clicked outside modal content
+  window.addEventListener('click', (event) => {
+    if(event.target === aboutModal){
+      aboutModal.style.display = 'none';
+    }
+  });
+
+  // Close modal on Escape key
+  window.addEventListener('keydown', (event) => {
+    if(event.key === 'Escape' && aboutModal.style.display === 'block'){
+      aboutModal.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Quiz App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      padding: 20px;
+    }
+    .quiz-container {
+      max-width: 500px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+    }
+    .btn:hover {
+      background: #2980b9;
+    }
+    #next-btn {
+      background: #2ecc71;
+      display: none;
+    }
+    #score {
+      font-size: 18px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <h2 id="question">Question text</h2>
+    <div id="answer-buttons"></div>
+    <button id="next-btn">Next</button>
+    <div id="score"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What is the capital of India?",
+        answers: [
+          { text: "Mumbai", correct: false },
+          { text: "Delhi", correct: true },
+          { text: "Kolkata", correct: false },
+          { text: "Chennai", correct: false }
+        ]
+      },
+      {
+        question: "Which language is used for web development?",
+        answers: [
+          { text: "Python", correct: false },
+          { text: "JavaScript", correct: true },
+          { text: "C", correct: false },
+          { text: "Java", correct: false }
+        ]
+      },
+      {
+        question: "Who is the President of India (2024)?",
+        answers: [
+          { text: "Narendra Modi", correct: false },
+          { text: "Droupadi Murmu", correct: true },
+          { text: "Rajnath Singh", correct: false },
+          { text: "Amit Shah", correct: false }
+        ]
+      }
+    ];
+
+    const questionElement = document.getElementById("question");
+    const answerButtons = document.getElementById("answer-buttons");
+    const nextButton = document.getElementById("next-btn");
+    const scoreDisplay = document.getElementById("score");
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function startQuiz() {
+      currentQuestionIndex = 0;
+      score = 0;
+      nextButton.innerText = "Next";
+      scoreDisplay.innerText = "";
+      showQuestion();
+    }
+
+    function showQuestion() {
+      resetState();
+      const currentQuestion = questions[currentQuestionIndex];
+      questionElement.innerText = currentQuestion.question;
+
+      currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerText = answer.text;
+        button.classList.add("btn");
+        button.addEventListener("click", () => selectAnswer(button, answer.correct));
+        answerButtons.appendChild(button);
+      });
+    }
+
+    function resetState() {
+      nextButton.style.display = "none";
+      answerButtons.innerHTML = "";
+    }
+
+    function selectAnswer(button, correct) {
+      const allButtons = answerButtons.querySelectorAll("button");
+      allButtons.forEach(btn => btn.disabled = true);
+
+      if (correct) {
+        button.style.background = "#2ecc71";
+        score++;
+      } else {
+        button.style.background = "#e74c3c";
+      }
+
+      nextButton.style.display = "block";
+    }
+
+    nextButton.addEventListener("click", () => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        showQuestion();
+      } else {
+        showScore();
+      }
+    });
+
+    function showScore() {
+      resetState();
+      questionEle…

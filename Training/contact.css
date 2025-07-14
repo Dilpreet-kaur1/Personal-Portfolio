@@ -1,0 +1,141 @@
+
+h2{
+    font-size: 50px;
+}
+#contact {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+#contact h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Flex container for form and contact info */
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+/* Style the form */
+form {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+form label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form input,
+form textarea {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007acc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #005f99;
+}
+
+/* Style the contact info box */
+.contact-info {
+  flex: 1 1 40%;
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-left: 5px solid #00aaff;
+  border-radius: 10px;
+  font-size: 35px;
+}
+
+.contact-info h3 {
+  color: #007acc;
+  margin-bottom: 15px;
+}
+
+.contact-info p {
+  margin: 8px 0;
+  font-size: 25px;
+  color: #333;
+}
+.image {
+    background-image:url(image.jpg);
+    background-size: cover;
+    height:350px;
+    position:relative;
+}
+.nav_bar {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:black;
+    margin-left:65px;
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    height: 45px;
+    margin-bottom: 70px;
+}
+.name {
+    margin-right:500px;
+    font-size:45px;
+    margin-top:120px;
+}
+.name:hover {
+    border-bottom: 1.5px solid black;
+}
+.border h4 {
+    border-bottom: 1.5px solid transparent;
+}
+.border h4:hover {
+    border-bottom: 1.5px solid black;
+}
+.body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+a {
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
+    margin-top: 65px;
+}
+
+footer{
+        margin: bottom 0%;
+    }
+    .copyright{
+        text-align: center;
+        align-items: center;
+        font-size: 30px;
+    }
+    .foot{
+        color: black;
+        margin-top: 50px;
+    }
